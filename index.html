@@ -7,62 +7,106 @@
   <link rel="icon" href="https://github.githubassets.com/favicons/favicon.png" />
   <style>
     :root {
-      --primary: #00897B;
-      --text: #333;
-      --bg: #f7f9fa;
+      --primary: #0078d7;
+      --primary-dark: #005fa3;
+      --bg-gradient: linear-gradient(135deg, #e6f0ff, #ffffff);
+      --text: #1b1b1b;
+      --card-bg: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.1);
     }
 
     body {
       font-family: "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
+      background: var(--bg-gradient);
       color: var(--text);
-      text-align: center;
       margin: 0;
       padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
     }
 
     .container {
-      max-width: 700px;
-      margin: 100px auto;
-      background: white;
-      padding: 40px;
+      background: var(--card-bg);
+      margin-top: 80px;
+      max-width: 750px;
+      padding: 50px 40px;
       border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 6px 16px var(--shadow);
+      text-align: center;
+      animation: fadeIn 0.8s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     img.avatar {
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
-      margin-bottom: 20px;
       border: 3px solid var(--primary);
+      margin-bottom: 20px;
     }
 
     h1 {
       color: var(--primary);
-      margin-bottom: 10px;
+      font-size: 2em;
+      margin-bottom: 8px;
+    }
+
+    h3 {
+      color: var(--primary-dark);
+      margin-top: 0;
+      font-weight: 500;
     }
 
     p {
-      font-size: 1.1rem;
       line-height: 1.6;
+      font-size: 1.05rem;
       margin-bottom: 30px;
+      color: #333;
     }
 
-    .links a {
+    .links a, .projects a {
       display: inline-block;
       background: var(--primary);
       color: white;
       text-decoration: none;
-      padding: 12px 24px;
-      margin: 6px;
+      padding: 12px 22px;
+      margin: 8px;
       border-radius: 8px;
       transition: 0.2s;
       font-weight: 500;
     }
 
-    .links a:hover {
-      background: #006f63;
+    .links a:hover, .projects a:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    section {
+      margin-top: 40px;
+    }
+
+    h2 {
+      color: var(--primary-dark);
+      font-size: 1.4em;
+      margin-bottom: 12px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+      margin: 40px 0 20px;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
     }
   </style>
 </head>
@@ -71,16 +115,30 @@
     <img src="https://github.com/efcjunior.png" alt="Everson Cunha" class="avatar" />
     <h1>Everson Cunha</h1>
     <h3>Software Engineer</h3>
+
     <p>
-      I’m a Brazilian software engineer passionate about building digital solutions that connect
-      technology and purpose. Here you can find my personal projects and ways to support my work.
+      I'm a Brazilian software engineer passionate about building digital solutions 
+      that connect technology and purpose. Here you can explore my projects 
+      and connect with my professional and freelance profiles.
     </p>
 
     <div class="links">
-      <a href="https://ko-fi.com/eversoncunha" target="_blank">☕ Support me on Ko-fi</a>
+      <a href="https://ko-fi.com/eversoncunha" target="_blank">☕ Support on Ko-fi</a>
       <a href="https://github.com/efcjunior" target="_blank">💻 GitHub</a>
-      <a href="https://www.linkedin.com/in/eversoncunha/" target="_blank">🔗 LinkedIn</a>
+      <a href="https://www.linkedin.com/in/eversoncjunior/" target="_blank">🔗 LinkedIn</a>
+      <a href="https://www.workana.com/freelancer/6fb950bbd78477ebde92909d7ee53bce" target="_blank">💼 Workana</a>
+      <a href="https://www.99freelas.com.br/user/devcunha" target="_blank">🧑‍💻 99Freelas</a>
     </div>
+
+    <section class="projects">
+      <h2>Featured Projects</h2>
+      <a href="https://rotabiblica66.com/" target="_blank">📖 Rota Bíblica 66 – Gran Horner Reading Plan</a>
+      <a href="https://greekalpha.app" target="_blank">🔤 Greek Alpha – Learn Greek Koine</a>
+    </section>
   </div>
+
+  <footer>
+    © 2025 Everson Cunha – Crafted with purpose.  
+  </footer>
 </body>
 </html>
