@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Everson Cunha – Engenheiro de Software</title>
+
+  <!-- Favicon (pode trocar depois pelo seu) -->
+  <link rel="icon" href="https://github.githubassets.com/favicons/favicon.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -17,164 +21,54 @@
       --white: #fff;
       --border: #e2e8f0;
     }
-
-    body {
-      font-family: "Inter", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 60px 20px;
-    }
-
-    .card {
-      background: var(--white);
-      max-width: 720px;
-      width: 100%;
-      padding: 60px 50px;
-      border-radius: 18px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
-      text-align: center;
-      border: 1px solid var(--border);
-    }
-
-    img.avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--primary);
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      font-size: 1.9rem;
-      font-weight: 600;
-      color: var(--primary);
-      margin: 0;
-    }
-
-    h2 {
-      font-size: 1.1rem;
-      color: var(--light-text);
-      font-weight: 500;
-      margin-top: 5px;
-      margin-bottom: 25px;
-    }
-
-    p {
-      font-size: 1.05rem;
-      line-height: 1.7;
-      color: var(--light-text);
-      margin-bottom: 40px;
-    }
-
-    .links {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 50px;
-    }
-
-    .links a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .links a:hover {
-      color: var(--text);
-    }
-
-    .divider {
-      border-top: 1px solid var(--border);
-      margin: 40px 0;
-    }
-
-    .projects h3, .support h3 {
-      color: var(--primary);
-      font-size: 1.2rem;
-      margin-bottom: 25px;
-    }
-
-    .projects .project {
-      margin-bottom: 16px;
-    }
-
-    .projects a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .projects a:hover {
-      color: var(--text);
-    }
-
-    .support {
-      margin-top: 40px;
-      text-align: center;
-      background: #f2f8ff;
-      padding: 25px 30px;
-      border-radius: 14px;
-    }
-
-    .support p {
-      color: var(--light-text);
-      margin-bottom: 20px;
-    }
-
-    .support a.button {
-      display: inline-block;
-      background: var(--primary);
-      color: white;
-      padding: 12px 26px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.25s;
-    }
-
-    .support a.button:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-    }
-
-    footer {
-      margin-top: 50px;
-      text-align: center;
-      color: #777;
-      font-size: 0.9rem;
-    }
-
-    footer a {
-      color: var(--primary);
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
+    body { font-family: "Inter", sans-serif; background: var(--bg); color: var(--text);
+      margin:0; display:flex; flex-direction:column; align-items:center; padding:60px 20px; }
+    header { width:100%; max-width:720px; display:flex; justify-content:flex-end; margin-bottom:12px; }
+    .lang { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:6px 10px; }
+    .card { background:var(--white); max-width:720px; width:100%; padding:60px 50px; border-radius:18px;
+      box-shadow:0 4px 16px rgba(0,0,0,0.05); text-align:center; border:1px solid var(--border); }
+    img.avatar { width:120px; height:120px; border-radius:50%; object-fit:cover; border:3px solid var(--primary); margin-bottom:20px; }
+    h1 { font-size:1.9rem; font-weight:600; color:var(--primary); margin:0; }
+    h2 { font-size:1.1rem; color:var(--light-text); font-weight:500; margin-top:5px; margin-bottom:25px; }
+    p { font-size:1.05rem; line-height:1.7; color:var(--light-text); margin-bottom:40px; }
+    .links { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:50px; }
+    .links a { color:var(--primary); text-decoration:none; font-weight:500; transition:color .2s; }
+    .links a:hover { color:var(--text); }
+    .divider { border-top:1px solid var(--border); margin:40px 0; }
+    .projects h3, .support h3 { color:var(--primary); font-size:1.2rem; margin-bottom:25px; }
+    .project { margin-bottom:16px; }
+    .project a { color:var(--primary); text-decoration:none; font-weight:500; transition:color .2s; }
+    .project a:hover { color:var(--text); }
+    .support { margin-top:40px; text-align:center; background:#f2f8ff; padding:25px 30px; border-radius:14px; }
+    .support p { color:var(--light-text); margin-bottom:20px; }
+    .support a.button { display:inline-block; background:var(--primary); color:#fff; padding:12px 26px; border-radius:10px;
+      text-decoration:none; font-weight:500; transition:.25s; }
+    .support a.button:hover { background:var(--primary-dark); transform:translateY(-2px); }
+    footer { margin-top:50px; text-align:center; color:#777; font-size:.9rem; }
+    footer a { color:var(--primary); text-decoration:none; }
+    footer a:hover { text-decoration:underline; }
   </style>
 </head>
 <body>
-  <div class="card">
+  <header>
+    <select id="lang" class="lang" aria-label="Language">
+      <option value="pt">🇧🇷 Português</option>
+      <option value="en">🇺🇸 English</option>
+    </select>
+  </header>
+
+  <main class="card">
     <img src="https://github.com/efcjunior.png" alt="Everson Cunha" class="avatar" />
     <h1>Everson Cunha</h1>
-    <h2>Engenheiro de Software</h2>
+    <h2 id="role">Engenheiro de Software</h2>
 
-    <p>
+    <p id="bio">
       Engenheiro de software brasileiro especializado em construir soluções que unem tecnologia e propósito.
       Trabalho com integração de APIs, arquitetura limpa e desenvolvimento backend com foco em sistemas escaláveis e úteis.
     </p>
 
     <div class="links">
-      <a href="https://www.linkedin.com/in/eversoncjunior/" target="_blank">LinkedIn</a>
+      <a id="lnkLinkedin" href="https://www.linkedin.com/in/eversoncjunior/" target="_blank">LinkedIn</a>
       <a href="https://github.com/efcjunior" target="_blank">GitHub</a>
       <a href="https://www.workana.com/freelancer/6fb950bbd78477ebde92909d7ee53bce" target="_blank">Workana</a>
       <a href="https://www.99freelas.com.br/user/devcunha" target="_blank">99Freelas</a>
@@ -182,30 +76,103 @@
 
     <div class="divider"></div>
 
-    <div class="projects">
-      <h3>Projetos em Destaque</h3>
-      <div class="project">
-        📖 <a href="https://rotabiblica66.com/" target="_blank">Rota Bíblica 66 – Plano de Leitura Gran Horner</a>
+    <section class="projects">
+      <h3 id="projectsTitle">Projetos em Destaque</h3>
+      <div class="project">📖
+        <a id="p1" href="https://rotabiblica66.com/" target="_blank">
+          Rota Bíblica 66 – Plano de Leitura Gran Horner
+        </a>
       </div>
-      <div class="project">
-        🔤 <a href="https://greekalpha.app" target="_blank">Greek Alpha – Aprendizado do Grego Koiné</a>
+      <div class="project">🔤
+        <a id="p2" href="https://greekalpha.app" target="_blank">
+          Greek Alpha – Aprendizado do Grego Koiné
+        </a>
       </div>
-    </div>
+    </section>
 
     <div class="divider"></div>
 
-    <div class="support">
-      <h3>💙 Apoie meu trabalho</h3>
-      <p>
+    <section class="support">
+      <h3 id="supportTitle">💙 Apoie meu trabalho</h3>
+      <p id="supportText">
         Se você gosta dos meus projetos e quer me incentivar a continuar criando soluções abertas e educativas,
-        pode me apoiar com um café virtual ☕.
+        pode me apoiar com um café virtual.
       </p>
-      <a href="https://ko-fi.com/eversoncunha" target="_blank" class="button">Apoiar no Ko-fi</a>
-    </div>
-  </div>
+      <a id="supportButton" href="https://ko-fi.com/eversoncunha" target="_blank" class="button">Apoiar no Ko-fi</a>
+    </section>
+  </main>
 
-  <footer>
+  <footer id="footer">
     © 2025 Everson Cunha – Desenvolvido com propósito.
   </footer>
+
+  <script>
+    // textos PT/EN
+    const t = {
+      pt: {
+        title: "Everson Cunha – Engenheiro de Software",
+        role: "Engenheiro de Software",
+        bio: "Engenheiro de software brasileiro especializado em construir soluções que unem tecnologia e propósito. Trabalho com integração de APIs, arquitetura limpa e desenvolvimento backend com foco em sistemas escaláveis e úteis.",
+        projectsTitle: "Projetos em Destaque",
+        p1: "Rota Bíblica 66 – Plano de Leitura Gran Horner",
+        p2: "Greek Alpha – Aprendizado do Grego Koiné",
+        supportTitle: "💙 Apoie meu trabalho",
+        supportText: "Se você gosta dos meus projetos e quer me incentivar a continuar criando soluções abertas e educativas, pode me apoiar com um café virtual.",
+        supportButton: "Apoiar no Ko-fi",
+        footer: "© 2025 Everson Cunha – Desenvolvido com propósito."
+      },
+      en: {
+        title: "Everson Cunha – Software Engineer",
+        role: "Software Engineer",
+        bio: "Brazilian software engineer focused on building digital solutions that connect technology and purpose. I work with API integration, clean architecture, and backend development for scalable, useful systems.",
+        projectsTitle: "Featured Projects",
+        p1: "Rota Bíblica 66 – Gran Horner Reading Plan",
+        p2: "Greek Alpha – Learn Greek Koine",
+        supportTitle: "💙 Support My Work",
+        supportText: "If you enjoy my projects and want to encourage me to keep creating open and educational solutions, you can support me with a virtual coffee.",
+        supportButton: "Support on Ko-fi",
+        footer: "© 2025 Everson Cunha – Crafted with purpose."
+      }
+    };
+
+    const els = {
+      role: document.getElementById("role"),
+      bio: document.getElementById("bio"),
+      projectsTitle: document.getElementById("projectsTitle"),
+      p1: document.getElementById("p1"),
+      p2: document.getElementById("p2"),
+      supportTitle: document.getElementById("supportTitle"),
+      supportText: document.getElementById("supportText"),
+      supportButton: document.getElementById("supportButton"),
+      footer: document.getElementById("footer")
+    };
+
+    const langSel = document.getElementById("lang");
+    const saved = localStorage.getItem("lang");
+    if (saved) langSel.value = saved;
+
+    function applyLang(lang) {
+      const L = t[lang];
+      document.title = L.title;
+      els.role.textContent = L.role;
+      els.bio.textContent = L.bio;
+      els.projectsTitle.textContent = L.projectsTitle;
+      els.p1.textContent = L.p1;
+      els.p2.textContent = L.p2;
+      els.supportTitle.textContent = L.supportTitle;
+      els.supportText.textContent = L.supportText;
+      els.supportButton.textContent = L.supportButton;
+      els.footer.textContent = L.footer;
+      document.documentElement.lang = lang === "en" ? "en" : "pt-br";
+    }
+
+    langSel.addEventListener("change", () => {
+      const lang = langSel.value;
+      localStorage.setItem("lang", lang);
+      applyLang(lang);
+    });
+
+    applyLang(langSel.value);
+  </script>
 </body>
 </html>
