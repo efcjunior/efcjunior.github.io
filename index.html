@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Everson Cunha – Software Engineer</title>
-  <link rel="icon" href="https://github.githubassets.com/favicons/favicon.png" />
   <style>
     :root {
       --primary: #0078d7;
@@ -27,20 +26,27 @@
       min-height: 100vh;
     }
 
+    .lang-toggle {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
     .container {
       background: var(--card-bg);
-      margin-top: 80px;
-      max-width: 750px;
+      margin-top: 100px;
+      max-width: 760px;
       padding: 50px 40px;
       border-radius: 16px;
       box-shadow: 0 6px 16px var(--shadow);
       text-align: center;
-      animation: fadeIn 0.8s ease-in;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     img.avatar {
@@ -51,51 +57,26 @@
       margin-bottom: 20px;
     }
 
-    h1 {
-      color: var(--primary);
-      font-size: 2em;
-      margin-bottom: 8px;
-    }
+    h1 { color: var(--primary); margin-bottom: 8px; }
+    h3 { color: var(--primary-dark); margin-top: 0; font-weight: 500; }
 
-    h3 {
-      color: var(--primary-dark);
-      margin-top: 0;
-      font-weight: 500;
-    }
+    p { line-height: 1.6; font-size: 1.05rem; margin-bottom: 30px; }
 
-    p {
-      line-height: 1.6;
-      font-size: 1.05rem;
-      margin-bottom: 30px;
-      color: #333;
-    }
-
-    .links a, .projects a {
+    a.button {
       display: inline-block;
       background: var(--primary);
       color: white;
       text-decoration: none;
       padding: 12px 22px;
-      margin: 8px;
+      margin: 6px;
       border-radius: 8px;
       transition: 0.2s;
       font-weight: 500;
     }
 
-    .links a:hover, .projects a:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-    }
+    a.button:hover { background: var(--primary-dark); transform: translateY(-2px); }
 
-    section {
-      margin-top: 40px;
-    }
-
-    h2 {
-      color: var(--primary-dark);
-      font-size: 1.4em;
-      margin-bottom: 12px;
-    }
+    h2 { color: var(--primary-dark); font-size: 1.4em; margin-top: 40px; }
 
     footer {
       text-align: center;
@@ -104,41 +85,67 @@
       margin: 40px 0 20px;
     }
 
-    footer a {
-      color: var(--primary);
-      text-decoration: none;
-    }
+    footer a { color: var(--primary); text-decoration: none; }
   </style>
 </head>
 <body>
+  <button class="lang-toggle" onclick="toggleLang()">🇧🇷 PT / 🇺🇸 EN</button>
+
   <div class="container">
     <img src="https://github.com/efcjunior.png" alt="Everson Cunha" class="avatar" />
-    <h1>Everson Cunha</h1>
-    <h3>Software Engineer</h3>
-
-    <p>
+    <h1 id="name">Everson Cunha</h1>
+    <h3 id="title">Software Engineer</h3>
+    <p id="description">
       I'm a Brazilian software engineer passionate about building digital solutions 
-      that connect technology and purpose. Here you can explore my projects 
-      and connect with my professional and freelance profiles.
+      that connect technology and purpose. Here you can explore my projects and 
+      connect with my professional and freelance profiles.
     </p>
 
     <div class="links">
-      <a href="https://ko-fi.com/eversoncunha" target="_blank">☕ Support on Ko-fi</a>
-      <a href="https://github.com/efcjunior" target="_blank">💻 GitHub</a>
-      <a href="https://www.linkedin.com/in/eversoncjunior/" target="_blank">🔗 LinkedIn</a>
-      <a href="https://www.workana.com/freelancer/6fb950bbd78477ebde92909d7ee53bce" target="_blank">💼 Workana</a>
-      <a href="https://www.99freelas.com.br/user/devcunha" target="_blank">🧑‍💻 99Freelas</a>
+      <a href="https://ko-fi.com/eversoncunha" class="button" target="_blank">☕ Support on Ko-fi</a>
+      <a href="https://github.com/efcjunior" class="button" target="_blank">💻 GitHub</a>
+      <a href="https://www.linkedin.com/in/eversoncjunior/" class="button" target="_blank">🔗 LinkedIn</a>
+      <a href="https://www.workana.com/freelancer/6fb950bbd78477ebde92909d7ee53bce" class="button" target="_blank">💼 Workana</a>
+      <a href="https://www.99freelas.com.br/user/devcunha" class="button" target="_blank">🧑‍💻 99Freelas</a>
     </div>
 
-    <section class="projects">
-      <h2>Featured Projects</h2>
-      <a href="https://rotabiblica66.com/" target="_blank">📖 Rota Bíblica 66 – Gran Horner Reading Plan</a>
-      <a href="https://greekalpha.app" target="_blank">🔤 Greek Alpha – Learn Greek Koine</a>
-    </section>
+    <h2 id="projects-title">Featured Projects</h2>
+    <div class="projects">
+      <a href="https://rotabiblica66.com/" class="button" target="_blank">📖 Rota Bíblica 66 – Gran Horner Reading Plan</a>
+      <a href="https://greekalpha.app" class="button" target="_blank">🔤 Greek Alpha – Learn Greek Koine</a>
+    </div>
   </div>
 
-  <footer>
-    © 2025 Everson Cunha – Crafted with purpose.  
+  <footer id="footer">
+    © 2025 Everson Cunha – Crafted with purpose.
   </footer>
+
+  <script>
+    let lang = "en";
+    const text = {
+      en: {
+        title: "Software Engineer",
+        description:
+          "I'm a Brazilian software engineer passionate about building digital solutions that connect technology and purpose. Here you can explore my projects and connect with my professional and freelance profiles.",
+        projectsTitle: "Featured Projects",
+        footer: "© 2025 Everson Cunha – Crafted with purpose."
+      },
+      pt: {
+        title: "Engenheiro de Software",
+        description:
+          "Sou um engenheiro de software brasileiro apaixonado por criar soluções digitais que conectam tecnologia e propósito. Aqui você pode conhecer meus projetos e acessar meus perfis profissionais e freelancers.",
+        projectsTitle: "Projetos em Destaque",
+        footer: "© 2025 Everson Cunha – Desenvolvido com propósito."
+      }
+    };
+
+    function toggleLang() {
+      lang = lang === "en" ? "pt" : "en";
+      document.getElementById("title").textContent = text[lang].title;
+      document.getElementById("description").textContent = text[lang].description;
+      document.getElementById("projects-title").textContent = text[lang].projectsTitle;
+      document.getElementById("footer").textContent = text[lang].footer;
+    }
+  </script>
 </body>
 </html>
