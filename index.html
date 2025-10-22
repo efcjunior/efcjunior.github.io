@@ -74,6 +74,28 @@
     footer{margin:40px 0 10px;text-align:center;color:var(--muted);font-size:.92rem}
     .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}
     .reveal.in{opacity:1;transform:none}
+    blockquote.verse {
+  margin: 24px 0 0;
+  padding: 14px 20px;
+  border-left: 4px solid var(--primary);
+  background: color-mix(in srgb, var(--primary) 6%, transparent);
+  border-radius: 10px;
+  font-style: italic;
+  color: var(--muted);
+}
+
+blockquote.verse p {
+  margin: 0 0 4px;
+  line-height: 1.7;
+}
+
+blockquote.verse footer {
+  text-align: right;
+  font-style: normal;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
   </style>
 </head>
 <body>
@@ -110,7 +132,11 @@
         Engenheiro de software brasileiro apaixonado por unir tecnologia e propósito. Atuo com integração de APIs,
         desenho de arquiteturas e desenvolvimento backend com foco em clareza, testes e confiabilidade.
       </p>
-      <p class="verse" id="verse">“Portanto, quer vocês comam, bebam ou façam qualquer outra coisa, façam tudo para a glória de Deus.” — 1Co 10:31 (NVI)</p>
+      <blockquote class="verse">
+  <p>“Portanto, quer vocês comam, bebam ou façam qualquer outra coisa, façam tudo para a glória de Deus.”</p>
+  <footer>— 1Co 10:31 (NVI)</footer>
+</blockquote>
+
       <div class="divider"></div>
       <div class="stack">
         <span class="chip">Java • Spring Boot • Quarkus</span>
