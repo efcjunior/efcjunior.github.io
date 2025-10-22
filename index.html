@@ -336,7 +336,25 @@ blockquote.verse footer {
     const io=new IntersectionObserver(entries=>{
       entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
     },{threshold:.12});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));      
   </script>
+  <!-- Ko-fi Floating Chat -->
+  <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
+  <script>
+    try {
+      kofiWidgetOverlay.draw('eversoncunha', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': '☕ Apoie no Ko-fi',
+        'floating-chat.donateButton.background-color': '#00897B',
+        'floating-chat.donateButton.text-color': '#ffffff',
+        'position': 'left'
+      });
+    } catch (e) {
+      console.warn("Ko-fi widget não pôde ser carregado:", e);
+    }
+  </script>
+</body>
+</html>
+
 </body>
 </html>
