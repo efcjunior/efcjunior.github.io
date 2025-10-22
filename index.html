@@ -116,13 +116,13 @@
         <div class="divider"></div>
         <h3 id="skillsTitle" style="color:var(--primary); font-size:1.1rem;">Principais Competências Técnicas</h3>
         <ul id="skillsList" style="text-align:left; color:var(--muted); line-height:1.8; list-style:none; padding:0;">
-          <li id="s1">Backend: Java (Spring Boot, Quarkus, Jakarta EE), Node.js (Express), APIs REST, Microservices, Clean Architecture, DDD.</li>
-          <li id="s2">Frontend: React.js, TypeScript, HTML5, CSS3, Tailwind, Angular (básico).</li>
-          <li id="s3">DevOps & Cloud: Docker, Docker Compose, Azure (Functions, AKS), GitHub Actions, Jenkins, CI/CD Pipelines.</li>
-          <li id="s4">Testing & Qualidade: JUnit, Mockito, TDD, Postman, Integration Testing.</li>
-          <li id="s5">Data & Search: PostgreSQL, MongoDB, Redis, Apache Lucene, Solr, Elasticsearch, Snowflake.</li>
-          <li id="s6">Segurança & Integração: OAuth2 / OIDC / JWT, Secure API Design, Open Finance / Open Banking APIs.</li>
-          <li id="s7">Ferramentas & Práticas: Git / GitFlow, IntelliJ, VS Code, Linux, Jira, Agile / Scrum.</li>
+          <li id="s1"></li>
+          <li id="s2"></li>
+          <li id="s3"></li>
+          <li id="s4"></li>
+          <li id="s5"></li>
+          <li id="s6"></li>
+          <li id="s7"></li>
         </ul>
       </div>
     </section>
@@ -156,70 +156,36 @@
   </div>
 
   <script>
-    // Language translations
+    // Traduções completas
     const T={
-      pt:{
-        title:"Everson Cunha — Engenheiro de Software",
-        role:"Engenheiro de Software",
-        headline:"Construindo software com propósito, clareza e confiabilidade.",
-        subhead:"APIs, arquitetura limpa e backend escalável — com foco em impacto real.",
-        aboutTitle:"Sobre",
-        aboutText:"Engenheiro de software brasileiro apaixonado por unir tecnologia e propósito. Atuo com integração de APIs, desenho de arquiteturas e desenvolvimento backend com foco em clareza, testes e confiabilidade.",
-        verse:"“Portanto, quer vocês comam, bebam ou façam qualquer outra coisa, façam tudo para a glória de Deus.” — 1Co 10:31 (NVI)",
-        skillsButton:"⚙️ Ver habilidades técnicas",
-        skillsHide:"⬆️ Ocultar habilidades",
-        skillsTitle:"Principais Competências Técnicas",
+      pt:{skillsButton:"⚙️ Ver habilidades técnicas",skillsHide:"⬆️ Ocultar habilidades",skillsTitle:"Principais Competências Técnicas",
         s1:"Backend: Java (Spring Boot, Quarkus, Jakarta EE), Node.js (Express), APIs REST, Microservices, Clean Architecture, DDD.",
         s2:"Frontend: React.js, TypeScript, HTML5, CSS3, Tailwind, Angular (básico).",
         s3:"DevOps & Cloud: Docker, Docker Compose, Azure (Functions, AKS), GitHub Actions, Jenkins, CI/CD Pipelines.",
         s4:"Testing & Qualidade: JUnit, Mockito, TDD, Postman, Integration Testing.",
         s5:"Data & Search: PostgreSQL, MongoDB, Redis, Apache Lucene, Solr, Elasticsearch, Snowflake.",
         s6:"Segurança & Integração: OAuth2 / OIDC / JWT, Secure API Design, Open Finance / Open Banking APIs.",
-        s7:"Ferramentas & Práticas: Git / GitFlow, IntelliJ, VS Code, Linux, Jira, Agile / Scrum.",
-        projectsTitle:"Projetos em Destaque",
-        supportTitle:"Apoie & Contato",
-        supportText:"Curtiu os projetos? Você pode me incentivar a continuar criando ferramentas abertas e educativas.",
-        footer:"© 2025 Everson Cunha — Desenvolvido com propósito."
-      },
-      en:{
-        title:"Everson Cunha — Software Engineer",
-        role:"Software Engineer",
-        headline:"Building software with purpose, clarity, and reliability.",
-        subhead:"APIs, clean architecture, and scalable backends — focused on real impact.",
-        aboutTitle:"About",
-        aboutText:"Brazilian software engineer focused on backend development, API integration, and clean architectures. I value clarity, testing, and long-term maintainability in every solution I build.",
-        verse:"“So whether you eat or drink or whatever you do, do it all for the glory of God.” — 1 Cor 10:31 (NIV)",
-        skillsButton:"⚙️ View technical skills",
-        skillsHide:"⬆️ Hide skills",
-        skillsTitle:"Main Technical Skills",
+        s7:"Ferramentas & Práticas: Git / GitFlow, IntelliJ, VS Code, Linux, Jira, Agile / Scrum."},
+      en:{skillsButton:"⚙️ View technical skills",skillsHide:"⬆️ Hide skills",skillsTitle: "Main Technical Skills",
         s1:"Backend: Java (Spring Boot, Quarkus, Jakarta EE), Node.js (Express), REST APIs, Microservices, Clean Architecture, DDD.",
         s2:"Frontend: React.js, TypeScript, HTML5, CSS3, Tailwind, Angular (basic).",
         s3:"DevOps & Cloud: Docker, Docker Compose, Azure (Functions, AKS), GitHub Actions, Jenkins, CI/CD Pipelines.",
         s4:"Testing & Quality: JUnit, Mockito, TDD, Postman, Integration Testing.",
         s5:"Data & Search: PostgreSQL, MongoDB, Redis, Apache Lucene, Solr, Elasticsearch, Snowflake.",
         s6:"Security & Integration: OAuth2 / OIDC / JWT, Secure API Design, Open Finance / Open Banking APIs.",
-        s7:"Tools & Practices: Git / GitFlow, IntelliJ, VS Code, Linux, Jira, Agile / Scrum.",
-        projectsTitle:"Featured Projects",
-        supportTitle:"Support & Contact",
-        supportText:"Enjoy the projects? You can support me to keep building open and educational tools.",
-        footer:"© 2025 Everson Cunha — Crafted with purpose."
-      }
+        s7:"Tools & Practices: Git / GitFlow, IntelliJ, VS Code, Linux, Jira, Agile / Scrum."}
     };
 
-    const els={skillsTitle:document.getElementById('skillsTitle')};
-    const langSel=document.getElementById('lang');
     const toggleBtn=document.getElementById('skillsToggle');
     const panel=document.getElementById('skillsPanel');
+    const langSel=document.getElementById('lang');
+    const sEls=[...Array(7)].map((_,i)=>document.getElementById(`s${i+1}`));
 
     function applyLang(lang){
       const L=T[lang];
-      document.title=L.title;
-      for(const key in L){
-        const el=document.getElementById(key);
-        if(el) el.textContent=L[key];
-      }
+      document.getElementById('skillsTitle').textContent=L.skillsTitle;
+      sEls.forEach((e,i)=>e.textContent=L[`s${i+1}`]);
       toggleBtn.textContent=L.skillsButton;
-      document.documentElement.lang=lang==='en'?'en':'pt-br';
       localStorage.setItem('lang',lang);
     }
 
@@ -235,8 +201,15 @@
       toggleBtn.textContent=show?L.skillsHide:L.skillsButton;
     });
 
-    // Theme toggle
     const themeToggle=document.getElementById('themeToggle');
     const themeLabel=document.getElementById('themeLabel');
     const savedTheme=localStorage.getItem('theme')||'light';
     setTheme(savedTheme);
+    function setTheme(m){document.documentElement.classList.toggle('dark',m==='dark');themeLabel.textContent=m==='dark'?'Dark':'Light';localStorage.setItem('theme',m);}
+    themeToggle.addEventListener('click',()=>setTheme(document.documentElement.classList.contains('dark')?'light':'dark'));
+
+    const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
