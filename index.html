@@ -2,177 +2,398 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Everson Cunha – Engenheiro de Software</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Everson Cunha — Engenheiro de Software</title>
 
-  <!-- Favicon (pode trocar depois pelo seu) -->
+  <!-- Favicon -->
   <link rel="icon" href="https://github.githubassets.com/favicons/favicon.png" />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --primary: #0077cc;
-      --primary-dark: #005fa3;
-      --text: #1f1f1f;
-      --light-text: #555;
-      --bg: #f9fbfd;
-      --white: #fff;
-      --border: #e2e8f0;
+    /* ===== THEME TOKENS ===== */
+    :root{
+      --primary:#00897B;
+      --secondary:#7F71AC;
+      --bg:#F7F9FB;
+      --panel:#FFFFFF;
+      --text:#121417;
+      --muted:#5C6370;
+      --border:#E6EAF0;
+      --ring:rgba(0,0,0,.05);
+      --shadow:0 10px 25px rgba(0,0,0,.06);
+      --shadow-hover:0 14px 35px rgba(0,0,0,.10);
+      --gradient:linear-gradient(135deg, rgba(0,137,123,.10), rgba(127,113,172,.10));
     }
-    body { font-family: "Inter", sans-serif; background: var(--bg); color: var(--text);
-      margin:0; display:flex; flex-direction:column; align-items:center; padding:60px 20px; }
-    header { width:100%; max-width:720px; display:flex; justify-content:flex-end; margin-bottom:12px; }
-    .lang { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:6px 10px; }
-    .card { background:var(--white); max-width:720px; width:100%; padding:60px 50px; border-radius:18px;
-      box-shadow:0 4px 16px rgba(0,0,0,0.05); text-align:center; border:1px solid var(--border); }
-    img.avatar { width:120px; height:120px; border-radius:50%; object-fit:cover; border:3px solid var(--primary); margin-bottom:20px; }
-    h1 { font-size:1.9rem; font-weight:600; color:var(--primary); margin:0; }
-    h2 { font-size:1.1rem; color:var(--light-text); font-weight:500; margin-top:5px; margin-bottom:25px; }
-    p { font-size:1.05rem; line-height:1.7; color:var(--light-text); margin-bottom:40px; }
-    .links { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:50px; }
-    .links a { color:var(--primary); text-decoration:none; font-weight:500; transition:color .2s; }
-    .links a:hover { color:var(--text); }
-    .divider { border-top:1px solid var(--border); margin:40px 0; }
-    .projects h3, .support h3 { color:var(--primary); font-size:1.2rem; margin-bottom:25px; }
-    .project { margin-bottom:16px; }
-    .project a { color:var(--primary); text-decoration:none; font-weight:500; transition:color .2s; }
-    .project a:hover { color:var(--text); }
-    .support { margin-top:40px; text-align:center; background:#f2f8ff; padding:25px 30px; border-radius:14px; }
-    .support p { color:var(--light-text); margin-bottom:20px; }
-    .support a.button { display:inline-block; background:var(--primary); color:#fff; padding:12px 26px; border-radius:10px;
-      text-decoration:none; font-weight:500; transition:.25s; }
-    .support a.button:hover { background:var(--primary-dark); transform:translateY(-2px); }
-    footer { margin-top:50px; text-align:center; color:#777; font-size:.9rem; }
-    footer a { color:var(--primary); text-decoration:none; }
-    footer a:hover { text-decoration:underline; }
+    /* Dark mode */
+    html.dark{
+      --bg:#0E1116;
+      --panel:#121722;
+      --text:#EDF2F7;
+      --muted:#9AA4B2;
+      --border:#1E2430;
+      --ring:rgba(255,255,255,.06);
+      --shadow:0 10px 25px rgba(0,0,0,.25);
+      --shadow-hover:0 18px 45px rgba(0,0,0,.40);
+      --gradient:linear-gradient(135deg, rgba(0,137,123,.18), rgba(127,113,172,.18));
+    }
+
+    /* ===== RESET / BASE ===== */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg); color:var(--text); line-height:1.6;
+    }
+    a{color:var(--primary); text-decoration:none}
+    a:hover{opacity:.9}
+    .container{max-width:1040px; margin:0 auto; padding:24px}
+    .btn{
+      display:inline-flex; align-items:center; gap:.6rem; border:1px solid var(--border);
+      padding:.8rem 1.1rem; border-radius:12px; background:var(--panel); color:var(--text);
+      box-shadow:var(--shadow); transition:.25s ease; font-weight:600;
+    }
+    .btn:hover{transform:translateY(-2px); box-shadow:var(--shadow-hover)}
+    .btn.primary{background:var(--primary); color:#fff; border-color:transparent}
+    .btn.ghost{background:transparent}
+    .btn.icon{padding:.6rem .7rem}
+    .chip{display:inline-block; font-size:.82rem; padding:.25rem .6rem; border:1px solid var(--border); border-radius:999px; background:var(--panel)}
+    .card{
+      background:var(--panel); border:1px solid var(--border); border-radius:18px;
+      box-shadow:var(--shadow); padding:28px; transition:.25s ease; position:relative; overflow:hidden;
+    }
+    .card:hover{transform:translateY(-3px); box-shadow:var(--shadow-hover)}
+    .section{margin:56px 0}
+    .section h2{font-size:1.3rem; letter-spacing:.4px; margin:0 0 18px; color:var(--muted)}
+    .divider{height:1px; background:var(--border); margin:40px 0}
+    .grid{display:grid; gap:18px}
+    @media (min-width:900px){ .grid.projects{grid-template-columns:repeat(2,1fr)} }
+
+    /* ===== HEADER ===== */
+    .header{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding:10px 0 6px; position:sticky; top:0; backdrop-filter:saturate(180%) blur(8px);
+      background:color-mix(in oklab, var(--bg) 85%, transparent); z-index:10; border-bottom:1px solid var(--border);
+    }
+    .brand{display:flex; align-items:center; gap:12px}
+    .brand .logo{
+      width:38px; height:38px; border-radius:12px; background:var(--gradient); border:1px solid var(--border);
+      display:grid; place-items:center; box-shadow:var(--shadow);
+    }
+    .brand b{font-size:1rem}
+    .controls{display:flex; align-items:center; gap:10px}
+    select.lang, .toggle{
+      border:1px solid var(--border); background:var(--panel); color:var(--text);
+      padding:.55rem .7rem; border-radius:10px; cursor:pointer;
+    }
+    .toggle{display:flex; gap:.5rem; align-items:center}
+
+    /* ===== HERO ===== */
+    .hero{
+      margin-top:28px; display:grid; gap:22px; align-items:center;
+      grid-template-columns:1fr; text-align:center; background:var(--gradient);
+      border:1px solid var(--border); border-radius:22px; padding:36px 22px;
+    }
+    @media (min-width:900px){
+      .hero{grid-template-columns:380px 1fr; text-align:left; padding:44px}
+    }
+    .avatar-wrap{
+      display:grid; place-items:center; position:relative;
+    }
+    .avatar{
+      width:168px; height:168px; border-radius:50%; object-fit:cover; border:4px solid var(--panel);
+      box-shadow:0 12px 26px var(--ring); background:var(--panel)
+    }
+    .halo{position:absolute; inset:auto 0 0; height:46%; background:radial-gradient(120px 60px at 50% 100%, rgba(0,137,123,.35), transparent 60%); filter:blur(18px)}
+    .hero h1{font-size:2rem; margin:4px 0 6px}
+    .hero p{margin:0 0 16px; color:var(--muted)}
+    .cta{display:flex; gap:10px; flex-wrap:wrap; justify-content:center}
+    @media (min-width:900px){ .cta{justify-content:flex-start} }
+
+    /* ===== ABOUT ===== */
+    .about p{margin:0; color:var(--muted)}
+    .verse{margin-top:12px; font-size:.92rem; color:var(--muted)}
+
+    /* ===== PROJECTS ===== */
+    .project{
+      display:grid; grid-template-columns:84px 1fr; gap:16px; align-items:center;
+    }
+    .project .icon{
+      width:84px; height:84px; border-radius:16px; display:grid; place-items:center;
+      background:var(--panel); border:1px solid var(--border); box-shadow:var(--shadow);
+    }
+    .project h3{margin:.1rem 0 .2rem; font-size:1.05rem}
+    .project p{margin:.2rem 0 .7rem; color:var(--muted)}
+    .project .actions{display:flex; gap:10px; flex-wrap:wrap}
+
+    /* ===== SUPPORT / CONTACT ===== */
+    .support{display:grid; gap:16px}
+    .support p{margin:0; color:var(--muted)}
+    .support .stack{display:flex; gap:8px; flex-wrap:wrap}
+
+    /* ===== FOOTER ===== */
+    footer{margin:40px 0 10px; text-align:center; color:var(--muted); font-size:.92rem}
+    footer a{color:var(--secondary)}
+
+    /* ===== REVEAL ANIM ===== */
+    .reveal{opacity:0; transform:translateY(12px); transition:opacity .6s ease, transform .6s ease}
+    .reveal.in{opacity:1; transform:none}
   </style>
 </head>
 <body>
-  <header>
-    <select id="lang" class="lang" aria-label="Language">
-      <option value="pt">🇧🇷 Português</option>
-      <option value="en">🇺🇸 English</option>
-    </select>
-  </header>
-
-  <main class="card">
-    <img src="https://github.com/efcjunior.png" alt="Everson Cunha" class="avatar" />
-    <h1>Everson Cunha</h1>
-    <h2 id="role">Engenheiro de Software</h2>
-
-    <p id="bio">
-      Engenheiro de software brasileiro especializado em construir soluções que unem tecnologia e propósito.
-      Trabalho com integração de APIs, arquitetura limpa e desenvolvimento backend com foco em sistemas escaláveis e úteis.
-    </p>
-
-    <div class="links">
-      <a id="lnkLinkedin" href="https://www.linkedin.com/in/eversoncjunior/" target="_blank">LinkedIn</a>
-      <a href="https://github.com/efcjunior" target="_blank">GitHub</a>
-      <a href="https://www.workana.com/freelancer/6fb950bbd78477ebde92909d7ee53bce" target="_blank">Workana</a>
-      <a href="https://www.99freelas.com.br/user/devcunha" target="_blank">99Freelas</a>
-    </div>
-
-    <div class="divider"></div>
-
-    <section class="projects">
-      <h3 id="projectsTitle">Projetos em Destaque</h3>
-      <div class="project">📖
-        <a id="p1" href="https://rotabiblica66.com/" target="_blank">
-          Rota Bíblica 66 – Plano de Leitura Gran Horner
-        </a>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">⚙️</div>
+        <b>Everson Cunha</b>
       </div>
-      <div class="project">🔤
-        <a id="p2" href="https://greekalpha.app" target="_blank">
-          Greek Alpha – Aprendizado do Grego Koiné
-        </a>
+      <div class="controls">
+        <button class="toggle" id="themeToggle" aria-label="Toggle theme">🌗 <span id="themeLabel">Light</span></button>
+        <select id="lang" class="lang" aria-label="Language">
+          <option value="pt">🇧🇷 Português</option>
+          <option value="en">🇺🇸 English</option>
+        </select>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero card reveal" id="hero">
+      <div class="avatar-wrap">
+        <img src="https://github.com/efcjunior.png" class="avatar" alt="Foto de perfil de Everson Cunha">
+        <div class="halo" aria-hidden="true"></div>
+      </div>
+      <div>
+        <span class="chip" id="role">Engenheiro de Software</span>
+        <h1 id="headline">Construindo software com propósito, clareza e confiabilidade.</h1>
+        <p id="subhead">
+          APIs, arquitetura limpa e backend escalável — com foco em impacto real.
+        </p>
+        <div class="cta">
+          <a href="#projects" class="btn primary" id="ctaProjects">Ver projetos</a>
+          <a href="https://www.linkedin.com/in/eversoncjunior/" class="btn" target="_blank" rel="noopener" id="ctaLinkedin">Conectar no LinkedIn</a>
+          <a href="https://github.com/efcjunior" class="btn ghost" target="_blank" rel="noopener">GitHub</a>
+        </div>
       </div>
     </section>
 
-    <div class="divider"></div>
-
-    <section class="support">
-      <h3 id="supportTitle">💙 Apoie meu trabalho</h3>
-      <p id="supportText">
-        Se você gosta dos meus projetos e quer me incentivar a continuar criando soluções abertas e educativas,
-        pode me apoiar com um café virtual.
+    <!-- About -->
+    <section class="about card section reveal" id="about">
+      <h2 id="aboutTitle">Sobre</h2>
+      <p id="aboutText">
+        Engenheiro de software brasileiro apaixonado por unir tecnologia e propósito. Atuo com integração de APIs,
+        desenho de arquiteturas e desenvolvimento backend com foco em clareza, testes e confiabilidade.
       </p>
-      <a id="supportButton" href="https://ko-fi.com/eversoncunha" target="_blank" class="button">Apoiar no Ko-fi</a>
+      <p class="verse" id="verse">
+        “Portanto, quer vocês comam, bebam ou façam qualquer outra coisa, façam tudo para a glória de Deus.” — 1Co 10:31 (NVI)
+      </p>
+      <div class="divider"></div>
+      <div class="stack">
+        <span class="chip">Java • Spring Boot • Quarkus</span>
+        <span class="chip">APIs REST • Clean Architecture</span>
+        <span class="chip">Docker • Azure • CI/CD</span>
+        <span class="chip">PostgreSQL • MongoDB</span>
+      </div>
     </section>
-  </main>
 
-  <footer id="footer">
-    © 2025 Everson Cunha – Desenvolvido com propósito.
-  </footer>
+    <!-- Projects -->
+    <section class="section" id="projects">
+      <h2 id="projectsTitle">Projetos em Destaque</h2>
+      <div class="grid projects">
+        <!-- Project 1 -->
+        <article class="card project reveal">
+          <div class="icon" aria-hidden="true">📖</div>
+          <div>
+            <h3>Rota Bíblica 66 — Gran Horner</h3>
+            <p id="p1Desc">
+              Plano de leitura com progresso, rotas e experiência amigável para constância diária.
+            </p>
+            <div class="actions">
+              <a class="btn primary" href="https://rotabiblica66.com/" target="_blank" rel="noopener" id="p1Visit">Visitar app</a>
+              <a class="btn" href="https://github.com/efcjunior" target="_blank" rel="noopener" id="p1Code">Ver código</a>
+            </div>
+          </div>
+        </article>
+        <!-- Project 2 -->
+        <article class="card project reveal">
+          <div class="icon" aria-hidden="true">🔤</div>
+          <div>
+            <h3>Greek Alpha — Grego Koiné</h3>
+            <p id="p2Desc">
+              Aprenda o alfabeto grego de forma interativa com áudio, transliteração e prática guiada.
+            </p>
+            <div class="actions">
+              <a class="btn primary" href="https://greekalpha.app" target="_blank" rel="noopener" id="p2Visit">Visitar app</a>
+              <a class="btn" href="https://github.com/efcjunior" target="_blank" rel="noopener" id="p2Code">Ver código</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Support / Contact -->
+    <section class="card section support reveal" id="support">
+      <h2 id="supportTitle">Apoie & Contato</h2>
+      <p id="supportText">
+        Curtiu os projetos? Você pode me incentivar a continuar criando ferramentas abertas e educativas.
+      </p>
+      <div class="stack">
+        <a class="btn primary" id="supportButton" href="https://ko-fi.com/eversoncunha" target="_blank" rel="noopener">Apoiar no Ko-fi</a>
+        <a class="btn" id="contactEmail" href="mailto:everson.c.junior@gmail.com">✉️ Email</a>
+        <a class="btn" id="contactWhats" href="https://wa.me/5562999119120" target="_blank" rel="noopener">💬 WhatsApp</a>
+        <a class="btn ghost" href="https://www.workana.com/freelancer/6fb950bbd78477ebde92909d7ee53bce" target="_blank" rel="noopener">Workana</a>
+        <a class="btn ghost" href="https://www.99freelas.com.br/user/devcunha" target="_blank" rel="noopener">99Freelas</a>
+      </div>
+    </section>
+
+    <footer>
+      <div id="footer">© 2025 Everson Cunha — Desenvolvido com propósito.</div>
+    </footer>
+  </div>
+
+  <!-- Ko-fi floating chat (optional) -->
+  <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
+  <script>
+    try{
+      kofiWidgetOverlay.draw('eversoncunha', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support Me',
+        'floating-chat.donateButton.background-color': '#00897B',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    }catch(e){}
+  </script>
 
   <script>
-    // textos PT/EN
-    const t = {
-      pt: {
-        title: "Everson Cunha – Engenheiro de Software",
-        role: "Engenheiro de Software",
-        bio: "Engenheiro de software brasileiro especializado em construir soluções que unem tecnologia e propósito. Trabalho com integração de APIs, arquitetura limpa e desenvolvimento backend com foco em sistemas escaláveis e úteis.",
-        projectsTitle: "Projetos em Destaque",
-        p1: "Rota Bíblica 66 – Plano de Leitura Gran Horner",
-        p2: "Greek Alpha – Aprendizado do Grego Koiné",
-        supportTitle: "💙 Apoie meu trabalho",
-        supportText: "Se você gosta dos meus projetos e quer me incentivar a continuar criando soluções abertas e educativas, pode me apoiar com um café virtual.",
-        supportButton: "Apoiar no Ko-fi",
-        footer: "© 2025 Everson Cunha – Desenvolvido com propósito."
+    /* ========= i18n ========= */
+    const T = {
+      pt:{
+        title:"Everson Cunha — Engenheiro de Software",
+        role:"Engenheiro de Software",
+        headline:"Construindo software com propósito, clareza e confiabilidade.",
+        subhead:"APIs, arquitetura limpa e backend escalável — com foco em impacto real.",
+        aboutTitle:"Sobre",
+        aboutText:"Engenheiro de software brasileiro apaixonado por unir tecnologia e propósito. Atuo com integração de APIs, desenho de arquiteturas e desenvolvimento backend com foco em clareza, testes e confiabilidade.",
+        verse:"“Portanto, quer vocês comam, bebam ou façam qualquer outra coisa, façam tudo para a glória de Deus.” — 1Co 10:31 (NVI)",
+        projectsTitle:"Projetos em Destaque",
+        p1Desc:"Plano de leitura com progresso, rotas e experiência amigável para constância diária.",
+        p2Desc:"Aprenda o alfabeto grego de forma interativa com áudio, transliteração e prática guiada.",
+        pVisit:"Visitar app", pCode:"Ver código",
+        supportTitle:"Apoie & Contato",
+        supportText:"Curtiu os projetos? Você pode me incentivar a continuar criando ferramentas abertas e educativas.",
+        supportBtn:"Apoiar no Ko-fi",
+        ctaProjects:"Ver projetos",
+        ctaLinkedin:"Conectar no LinkedIn",
+        footer:"© 2025 Everson Cunha — Desenvolvido com propósito."
       },
-      en: {
-        title: "Everson Cunha – Software Engineer",
-        role: "Software Engineer",
-        bio: "Brazilian software engineer focused on building digital solutions that connect technology and purpose. I work with API integration, clean architecture, and backend development for scalable, useful systems.",
-        projectsTitle: "Featured Projects",
-        p1: "Rota Bíblica 66 – Gran Horner Reading Plan",
-        p2: "Greek Alpha – Learn Greek Koine",
-        supportTitle: "💙 Support My Work",
-        supportText: "If you enjoy my projects and want to encourage me to keep creating open and educational solutions, you can support me with a virtual coffee.",
-        supportButton: "Support on Ko-fi",
-        footer: "© 2025 Everson Cunha – Crafted with purpose."
+      en:{
+        title:"Everson Cunha — Software Engineer",
+        role:"Software Engineer",
+        headline:"Building software with purpose, clarity, and reliability.",
+        subhead:"APIs, clean architecture, and scalable backends — focused on real impact.",
+        aboutTitle:"About",
+        aboutText:"Brazilian software engineer passionate about connecting technology and purpose. I design APIs, backend architectures, and cloud solutions with a focus on clarity, testing, and reliability.",
+        verse:"“So whether you eat or drink or whatever you do, do it all for the glory of God.” — 1 Cor 10:31 (NIV)",
+        projectsTitle:"Featured Projects",
+        p1Desc:"Reading plan with progress tracking, routes, and a friendly UX for daily consistency.",
+        p2Desc:"Learn the Greek alphabet interactively with audio, transliteration, and guided practice.",
+        pVisit:"Visit app", pCode:"View code",
+        supportTitle:"Support & Contact",
+        supportText:"Enjoy these projects? You can help me keep building open and educational tools.",
+        supportBtn:"Support on Ko-fi",
+        ctaProjects:"View projects",
+        ctaLinkedin:"Connect on LinkedIn",
+        footer:"© 2025 Everson Cunha — Crafted with purpose."
       }
     };
 
-    const els = {
-      role: document.getElementById("role"),
-      bio: document.getElementById("bio"),
-      projectsTitle: document.getElementById("projectsTitle"),
-      p1: document.getElementById("p1"),
-      p2: document.getElementById("p2"),
-      supportTitle: document.getElementById("supportTitle"),
-      supportText: document.getElementById("supportText"),
-      supportButton: document.getElementById("supportButton"),
-      footer: document.getElementById("footer")
+    const els={
+      role:document.getElementById('role'),
+      headline:document.getElementById('headline'),
+      subhead:document.getElementById('subhead'),
+      aboutTitle:document.getElementById('aboutTitle'),
+      aboutText:document.getElementById('aboutText'),
+      verse:document.getElementById('verse'),
+      projectsTitle:document.getElementById('projectsTitle'),
+      p1Desc:document.getElementById('p1Desc'),
+      p2Desc:document.getElementById('p2Desc'),
+      p1Visit:document.getElementById('p1Visit'),
+      p1Code:document.getElementById('p1Code'),
+      p2Visit:document.getElementById('p2Visit'),
+      p2Code:document.getElementById('p2Code'),
+      supportTitle:document.getElementById('supportTitle'),
+      supportText:document.getElementById('supportText'),
+      supportButton:document.getElementById('supportButton'),
+      ctaProjects:document.getElementById('ctaProjects'),
+      ctaLinkedin:document.getElementById('ctaLinkedin'),
+      footer:document.getElementById('footer')
     };
 
-    const langSel = document.getElementById("lang");
-    const saved = localStorage.getItem("lang");
-    if (saved) langSel.value = saved;
+    const langSel=document.getElementById('lang');
+    const savedLang=localStorage.getItem('lang')||'pt';
+    langSel.value=savedLang;
 
-    function applyLang(lang) {
-      const L = t[lang];
-      document.title = L.title;
-      els.role.textContent = L.role;
-      els.bio.textContent = L.bio;
-      els.projectsTitle.textContent = L.projectsTitle;
-      els.p1.textContent = L.p1;
-      els.p2.textContent = L.p2;
-      els.supportTitle.textContent = L.supportTitle;
-      els.supportText.textContent = L.supportText;
-      els.supportButton.textContent = L.supportButton;
-      els.footer.textContent = L.footer;
-      document.documentElement.lang = lang === "en" ? "en" : "pt-br";
+    function applyLang(l){
+      const L=T[l];
+      document.title=L.title;
+      els.role.textContent=L.role;
+      els.headline.textContent=L.headline;
+      els.subhead.textContent=L.subhead;
+      els.aboutTitle.textContent=L.aboutTitle;
+      els.aboutText.textContent=L.aboutText;
+      els.verse.textContent=L.verse;
+      els.projectsTitle.textContent=L.projectsTitle;
+      els.p1Desc.textContent=L.p1Desc;
+      els.p2Desc.textContent=L.p2Desc;
+      els.p1Visit.textContent=L.pVisit; els.p1Code.textContent=L.pCode;
+      els.p2Visit.textContent=L.pVisit; els.p2Code.textContent=L.pCode;
+      els.supportTitle.textContent=L.supportTitle;
+      els.supportText.textContent=L.supportText;
+      els.supportButton.textContent=L.supportBtn;
+      els.ctaProjects.textContent=L.ctaProjects;
+      els.ctaLinkedin.textContent=L.ctaLinkedin;
+      els.footer.textContent=L.footer;
+      document.documentElement.lang = l==='en' ? 'en' : 'pt-br';
+      localStorage.setItem('lang', l);
     }
+    langSel.addEventListener('change', e=>applyLang(e.target.value));
+    applyLang(savedLang);
 
-    langSel.addEventListener("change", () => {
-      const lang = langSel.value;
-      localStorage.setItem("lang", lang);
-      applyLang(lang);
+    /* ========= Theme toggle ========= */
+    const themeToggle=document.getElementById('themeToggle');
+    const themeLabel=document.getElementById('themeLabel');
+    const savedTheme=localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark':'light');
+    setTheme(savedTheme);
+
+    function setTheme(mode){
+      document.documentElement.classList.toggle('dark', mode==='dark');
+      themeLabel.textContent = mode==='dark' ? 'Dark': 'Light';
+      localStorage.setItem('theme', mode);
+    }
+    themeToggle.addEventListener('click', ()=>{
+      const next = document.documentElement.classList.contains('dark') ? 'light':'dark';
+      setTheme(next);
     });
 
-    applyLang(langSel.value);
+    /* ========= Smooth reveal ========= */
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    /* ========= Smooth anchor scroll ========= */
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id=a.getAttribute('href').slice(1);
+        const el=document.getElementById(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+      });
+    });
   </script>
 </body>
 </html>
