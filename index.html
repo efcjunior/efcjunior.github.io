@@ -46,13 +46,20 @@
     .chip{display:inline-block;font-size:.82rem;padding:.25rem .6rem;border:1px solid var(--border);border-radius:999px;background:var(--panel)}
     .card{background:var(--panel);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:28px;transition:.25s ease;}
     .section{margin:56px 0}
+    .section h2{font-size:1.3rem;letter-spacing:.4px;margin:0 0 18px;color:var(--muted)}
     .divider{height:1px;background:var(--border);margin:40px 0}
     .grid{display:grid;gap:18px}
     @media(min-width:900px){.grid.projects{grid-template-columns:repeat(2,1fr)}}
     .header{display:flex;align-items:center;justify-content:space-between;padding:10px 0 6px;position:sticky;top:0;backdrop-filter:saturate(180%) blur(8px);background:color-mix(in oklab,var(--bg)85%,transparent);z-index:10;border-bottom:1px solid var(--border);}
     .brand{display:flex;align-items:center;gap:12px}
     .brand .logo{width:38px;height:38px;border-radius:12px;background:var(--gradient);border:1px solid var(--border);display:grid;place-items:center;box-shadow:var(--shadow);}
-    select.lang,.toggle{border:1px solid var(--border);background:var(--panel);color:var(--text);padding:.55rem .7rem;border-radius:10px;cursor:pointer;}
+    .controls{display:flex;align-items:center;gap:8px}
+    .toggle{border:1px solid var(--border);background:var(--panel);color:var(--text);padding:.55rem .7rem;border-radius:10px;cursor:pointer;}
+    /* flag buttons (replaces select) */
+    .lang-flags{display:flex;gap:6px}
+    .flag-btn{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid var(--border);border-radius:10px;background:var(--panel);box-shadow:var(--shadow);cursor:pointer;transition:.2s}
+    .flag-btn[aria-pressed="true"]{outline:2px solid var(--primary)}
+    .flag-emoji{font-size:20px;line-height:1}
     .hero{margin-top:28px;display:grid;gap:22px;align-items:center;text-align:center;background:var(--gradient);border:1px solid var(--border);border-radius:22px;padding:36px 22px;}
     @media(min-width:900px){.hero{grid-template-columns:380px 1fr;text-align:left;padding:44px}}
     .avatar{width:168px;height:168px;border-radius:50%;object-fit:cover;border:4px solid var(--panel);box-shadow:0 12px 26px var(--ring);}
@@ -75,11 +82,14 @@
       <div class="brand"><div class="logo">⚙️</div><b>Everson Cunha</b></div>
       <div class="controls">
         <button class="toggle" id="themeToggle">🌗 <span id="themeLabel">Light</span></button>
-        <select id="lang" class="lang"><option value="pt">🇧🇷 PT</option><option value="en">🇺🇸 EN</option></select>
+        <div class="lang-flags" role="group" aria-label="Language">
+          <button class="flag-btn" id="flagPT" aria-pressed="true" title="Português (Brasil)"><span class="flag-emoji">🇧🇷</span></button>
+          <button class="flag-btn" id="flagEN" aria-pressed="false" title="English (US)"><span class="flag-emoji">🇺🇸</span></button>
+        </div>
       </div>
     </header>
 
-    <section class="hero card reveal">
+    <section class="hero card reveal" id="hero">
       <img src="https://github.com/efcjunior.png" class="avatar" alt="Everson Cunha">
       <div>
         <span class="chip" id="role">Engenheiro de Software</span>
@@ -87,12 +97,13 @@
         <p id="subhead">APIs, arquitetura limpa e backend escalável — com foco em impacto real.</p>
         <div class="cta">
           <a href="#projects" class="btn primary" id="ctaProjects">Ver projetos</a>
-          <a href="https://www.linkedin.com/in/eversoncjunior/" class="btn" id="ctaLinkedin" target="_blank">Conectar no LinkedIn</a>
+          <a href="https://www.linkedin.com/in/eversoncjunior/" class="btn" target="_blank" id="ctaLinkedin">Conectar no LinkedIn</a>
           <a href="https://github.com/efcjunior" class="btn ghost" target="_blank">GitHub</a>
         </div>
       </div>
     </section>
 
+    <!-- About -->
     <section class="about card section reveal" id="about">
       <h2 id="aboutTitle">Sobre</h2>
       <p id="aboutText">
@@ -108,14 +119,14 @@
         <span class="chip">PostgreSQL • MongoDB</span>
       </div>
 
-      <!-- SKILLS -->
+      <!-- Skills (toggle) -->
       <div style="margin-top:24px; text-align:center;">
         <button id="skillsToggle" class="btn ghost">⚙️ Ver habilidades técnicas</button>
       </div>
       <div id="skillsPanel" style="display:none; margin-top:24px;">
         <div class="divider"></div>
         <h3 id="skillsTitle" style="color:var(--primary); font-size:1.1rem;">Principais Competências Técnicas</h3>
-        <ul id="skillsList" style="text-align:left; color:var(--muted); line-height:1.8; list-style:none; padding:0;">
+        <ul style="text-align:left; color:var(--muted); line-height:1.8; list-style:none; padding:0;">
           <li id="s1"></li>
           <li id="s2"></li>
           <li id="s3"></li>
@@ -127,20 +138,30 @@
       </div>
     </section>
 
+    <!-- Projects -->
     <section class="section" id="projects">
       <h2 id="projectsTitle">Projetos em Destaque</h2>
       <div class="grid projects">
         <article class="card project reveal">
           <div class="icon">📖</div>
-          <div><h3>Rota Bíblica 66 — Gran Horner</h3><p id="p1Desc">Plano de leitura com progresso e experiência amigável.</p><a class="btn primary" href="https://rotabiblica66.com/" target="_blank" id="p1Visit">Visitar app</a></div>
+          <div>
+            <h3>Rota Bíblica 66 — Gran Horner</h3>
+            <p id="p1Desc">Plano de leitura com progresso, rotas e experiência amigável para constância diária.</p>
+            <div class="actions"><a class="btn primary" href="https://rotabiblica66.com/" target="_blank" id="p1Visit">Visitar app</a></div>
+          </div>
         </article>
         <article class="card project reveal">
           <div class="icon">🔤</div>
-          <div><h3>Greek Alpha — Grego Koiné</h3><p id="p2Desc">Aprenda o alfabeto grego de forma interativa com áudio e transliteração.</p><a class="btn primary" href="https://greekalpha.app" target="_blank" id="p2Visit">Visitar app</a></div>
+          <div>
+            <h3>Greek Alpha — Grego Koiné</h3>
+            <p id="p2Desc">Aprenda o alfabeto grego de forma interativa com áudio, transliteração e prática guiada.</p>
+            <div class="actions"><a class="btn primary" href="https://greekalpha.app" target="_blank" id="p2Visit">Visitar app</a></div>
+          </div>
         </article>
       </div>
     </section>
 
+    <!-- Support / Contact -->
     <section class="card section support reveal" id="support">
       <h2 id="supportTitle">Apoie & Contato</h2>
       <p id="supportText">Curtiu os projetos? Você pode me incentivar a continuar criando ferramentas abertas e educativas.</p>
@@ -156,59 +177,139 @@
   </div>
 
   <script>
-    // Traduções completas
+    /* ================== Translations ================== */
     const T={
-      pt:{skillsButton:"⚙️ Ver habilidades técnicas",skillsHide:"⬆️ Ocultar habilidades",skillsTitle:"Principais Competências Técnicas",
+      pt:{
+        title:"Everson Cunha — Engenheiro de Software",
+        role:"Engenheiro de Software",
+        headline:"Construindo software com propósito, clareza e confiabilidade.",
+        subhead:"APIs, arquitetura limpa e backend escalável — com foco em impacto real.",
+        aboutTitle:"Sobre",
+        aboutText:"Engenheiro de software brasileiro apaixonado por unir tecnologia e propósito. Atuo com integração de APIs, desenho de arquiteturas e desenvolvimento backend com foco em clareza, testes e confiabilidade.",
+        verse:"“Portanto, quer vocês comam, bebam ou façam qualquer outra coisa, façam tudo para a glória de Deus.” — 1Co 10:31 (NVI)",
+        skillsButton:"⚙️ Ver habilidades técnicas",
+        skillsHide:"⬆️ Ocultar habilidades",
+        skillsTitle:"Principais Competências Técnicas",
         s1:"Backend: Java (Spring Boot, Quarkus, Jakarta EE), Node.js (Express), APIs REST, Microservices, Clean Architecture, DDD.",
         s2:"Frontend: React.js, TypeScript, HTML5, CSS3, Tailwind, Angular (básico).",
         s3:"DevOps & Cloud: Docker, Docker Compose, Azure (Functions, AKS), GitHub Actions, Jenkins, CI/CD Pipelines.",
         s4:"Testing & Qualidade: JUnit, Mockito, TDD, Postman, Integration Testing.",
         s5:"Data & Search: PostgreSQL, MongoDB, Redis, Apache Lucene, Solr, Elasticsearch, Snowflake.",
         s6:"Segurança & Integração: OAuth2 / OIDC / JWT, Secure API Design, Open Finance / Open Banking APIs.",
-        s7:"Ferramentas & Práticas: Git / GitFlow, IntelliJ, VS Code, Linux, Jira, Agile / Scrum."},
-      en:{skillsButton:"⚙️ View technical skills",skillsHide:"⬆️ Hide skills",skillsTitle: "Main Technical Skills",
+        s7:"Ferramentas & Práticas: Git / GitFlow, IntelliJ, VS Code, Linux, Jira, Agile / Scrum.",
+        projectsTitle:"Projetos em Destaque",
+        p1Desc:"Plano de leitura com progresso, rotas e experiência amigável para constância diária.",
+        p1Visit:"Visitar app",
+        p2Desc:"Aprenda o alfabeto grego de forma interativa com áudio, transliteração e prática guiada.",
+        p2Visit:"Visitar app",
+        ctaProjects:"Ver projetos",
+        ctaLinkedin:"Conectar no LinkedIn",
+        supportTitle:"Apoie & Contato",
+        supportText:"Curtiu os projetos? Você pode me incentivar a continuar criando ferramentas abertas e educativas.",
+        footer:"© 2025 Everson Cunha — Desenvolvido com propósito."
+      },
+      en:{
+        title:"Everson Cunha — Software Engineer",
+        role:"Software Engineer",
+        headline:"Building software with purpose, clarity, and reliability.",
+        subhead:"APIs, clean architecture, and scalable backends — focused on real impact.",
+        aboutTitle:"About",
+        aboutText:"Brazilian software engineer focused on backend development, API integration, and clean architecture, with emphasis on clarity, testing, and reliability.",
+        verse:"“So whether you eat or drink or whatever you do, do it all for the glory of God.” — 1 Cor 10:31 (NIV)",
+        skillsButton:"⚙️ View technical skills",
+        skillsHide:"⬆️ Hide skills",
+        skillsTitle:"Main Technical Skills",
         s1:"Backend: Java (Spring Boot, Quarkus, Jakarta EE), Node.js (Express), REST APIs, Microservices, Clean Architecture, DDD.",
         s2:"Frontend: React.js, TypeScript, HTML5, CSS3, Tailwind, Angular (basic).",
         s3:"DevOps & Cloud: Docker, Docker Compose, Azure (Functions, AKS), GitHub Actions, Jenkins, CI/CD Pipelines.",
         s4:"Testing & Quality: JUnit, Mockito, TDD, Postman, Integration Testing.",
         s5:"Data & Search: PostgreSQL, MongoDB, Redis, Apache Lucene, Solr, Elasticsearch, Snowflake.",
         s6:"Security & Integration: OAuth2 / OIDC / JWT, Secure API Design, Open Finance / Open Banking APIs.",
-        s7:"Tools & Practices: Git / GitFlow, IntelliJ, VS Code, Linux, Jira, Agile / Scrum."}
+        s7:"Tools & Practices: Git / GitFlow, IntelliJ, VS Code, Linux, Jira, Agile / Scrum.",
+        projectsTitle:"Featured Projects",
+        p1Desc:"Reading plan with progress tracking, routes, and a friendly UX for daily consistency.",
+        p1Visit:"Visit app",
+        p2Desc:"Learn the Greek alphabet interactively with audio, transliteration, and guided practice.",
+        p2Visit:"Visit app",
+        ctaProjects:"View projects",
+        ctaLinkedin:"Connect on LinkedIn",
+        supportTitle:"Support & Contact",
+        supportText:"Enjoy the projects? You can support me to keep building open and educational tools.",
+        footer:"© 2025 Everson Cunha — Crafted with purpose."
+      }
     };
 
-    const toggleBtn=document.getElementById('skillsToggle');
-    const panel=document.getElementById('skillsPanel');
-    const langSel=document.getElementById('lang');
-    const sEls=[...Array(7)].map((_,i)=>document.getElementById(`s${i+1}`));
+    // map of element IDs we translate
+    const keys = [
+      "role","headline","subhead","aboutTitle","aboutText","verse","projectsTitle",
+      "p1Desc","p1Visit","p2Desc","p2Visit","ctaProjects","ctaLinkedin",
+      "supportTitle","supportText","footer","skillsTitle","s1","s2","s3","s4","s5","s6","s7"
+    ];
 
     function applyLang(lang){
-      const L=T[lang];
-      document.getElementById('skillsTitle').textContent=L.skillsTitle;
-      sEls.forEach((e,i)=>e.textContent=L[`s${i+1}`]);
-      toggleBtn.textContent=L.skillsButton;
+      const L = T[lang];
+      document.title = L.title;
+      keys.forEach(k=>{
+        const el=document.getElementById(k);
+        if(el) el.textContent = L[k];
+      });
+      // skills toggle button label depending on state
+      const showing = skillsPanel.style.display==='block';
+      skillsToggle.textContent = showing ? L.skillsHide : L.skillsButton;
+
+      // set html lang attribute
+      document.documentElement.lang = lang==='en'?'en':'pt-br';
       localStorage.setItem('lang',lang);
+
+      // update flag pressed states
+      flagPT.setAttribute('aria-pressed', lang==='pt');
+      flagEN.setAttribute('aria-pressed', lang==='en');
     }
 
-    const savedLang=localStorage.getItem('lang')||'pt';
-    langSel.value=savedLang;
-    applyLang(savedLang);
-    langSel.addEventListener('change',()=>applyLang(langSel.value));
+    // read saved language or default to pt
+    const savedLang = localStorage.getItem('lang') || 'pt';
 
-    toggleBtn.addEventListener('click',()=>{
-      const L=T[langSel.value];
-      const show=panel.style.display==='none'||!panel.style.display;
-      panel.style.display=show?'block':'none';
-      toggleBtn.textContent=show?L.skillsHide:L.skillsButton;
+    // Elements
+    const flagPT=document.getElementById('flagPT');
+    const flagEN=document.getElementById('flagEN');
+    const skillsToggle=document.getElementById('skillsToggle');
+    const skillsPanel=document.getElementById('skillsPanel');
+
+    // Init language
+    applyLang(savedLang);
+
+    // Flag events
+    flagPT.addEventListener('click', ()=>applyLang('pt'));
+    flagEN.addEventListener('click', ()=>applyLang('en'));
+
+    // Skills toggle
+    skillsToggle.addEventListener('click', ()=>{
+      const lang = (flagEN.getAttribute('aria-pressed')==='true')?'en':'pt';
+      const L=T[lang];
+      const show = skillsPanel.style.display!=='block';
+      skillsPanel.style.display = show ? 'block' : 'none';
+      skillsToggle.textContent = show ? L.skillsHide : L.skillsButton;
     });
 
+    /* ================== Theme toggle ================== */
     const themeToggle=document.getElementById('themeToggle');
     const themeLabel=document.getElementById('themeLabel');
-    const savedTheme=localStorage.getItem('theme')||'light';
+    const savedTheme=localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
     setTheme(savedTheme);
-    function setTheme(m){document.documentElement.classList.toggle('dark',m==='dark');themeLabel.textContent=m==='dark'?'Dark':'Light';localStorage.setItem('theme',m);}
-    themeToggle.addEventListener('click',()=>setTheme(document.documentElement.classList.contains('dark')?'light':'dark'));
+    function setTheme(mode){
+      document.documentElement.classList.toggle('dark', mode==='dark');
+      themeLabel.textContent = mode==='dark' ? 'Dark' : 'Light';
+      localStorage.setItem('theme', mode);
+    }
+    themeToggle.addEventListener('click', ()=>{
+      const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+      setTheme(next);
+    });
 
-    const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+    /* ================== Reveal anim ================== */
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    },{threshold:.12});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   </script>
 </body>
