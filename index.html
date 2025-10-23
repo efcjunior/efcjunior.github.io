@@ -15,15 +15,42 @@
 div[id^="kofi-widget-overlay"]{position:fixed!important;bottom:18px!important;right:18px!important;z-index:2147483647!important}
   div[id^="kofi-widget-overlay"] iframe{display:block!important;max-width:320px!important;border:0!important;overflow:hidden!important}
 
-    /* Corrige visual duplicado do Ko-fi */
-div[id^="kofi-widget-overlay"] iframe {
+/* --- Ko-fi visual fix seguro --- */
+
+/* garante que o botão flutuante apareça */
+div[id^="kofi-widget-overlay"] {
+  position: fixed !important;
+  bottom: 18px !important;
+  right: 18px !important;
+  z-index: 2147483647 !important;
+  visibility: visible !important;
   opacity: 1 !important;
+  transform: none !important;
 }
 
-div[id^="kofi-widget-overlay"]:not(:has(iframe[src*="widgetOverlay"])) iframe {
+/* força o iframe visível a ocupar tamanho normal */
+div[id^="kofi-widget-overlay"] iframe {
+  display: block !important;
+  width: auto !important;
+  max-width: 320px !important;
+  min-width: 60px !important;
+  height: auto !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+/* remove possíveis duplicatas invisíveis ou miniaturas */
+div[id^="kofi-widget-overlay"] iframe[kofiwidget="small"],
+div[id^="kofi-widget-overlay"] iframe[style*="width: 1px"],
+div[id^="kofi-widget-overlay"] iframe[style*="width:1px"],
+div[id^="kofi-widget-overlay"] iframe[width="1"],
+div[id^="kofi-widget-overlay"] iframe[height="1"] {
+  display: none !important;
+  visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
 }
+
 
 
     :root{
