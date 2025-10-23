@@ -385,20 +385,23 @@ blockquote.verse footer {
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));      
   </script>
   <!-- Ko-fi Floating Chat -->
- <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
-  <script>
+<script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js" defer></script>
+<script>
+  window.addEventListener("load", () => {
     try {
       kofiWidgetOverlay.draw('eversoncunha', {
         'type': 'floating-chat',
-        'floating-chat.donateButton.text': '☕ Apoie no Ko-fi',
+        'floating-chat.donateButton.text': '☕ Ko-fi',
         'floating-chat.donateButton.background-color': '#00897B',
         'floating-chat.donateButton.text-color': '#fff',
-        'position': 'right' // ✅ corrigido para direita
+        'position': 'right'
       });
     } catch (e) {
       console.warn("Ko-fi widget não pôde ser carregado:", e);
     }
-  </script>
+  });
+</script>
+
 
 
 
