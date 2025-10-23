@@ -11,32 +11,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-/* --- Correção Ko-fi sem sumir o botão --- */
+/* --- Correção definitiva do Ko-fi --- */
 html, body {
   overflow-x: hidden !important;
 }
 
-iframe[src*="ko-fi.com"], 
-div[id^="kofi-widget-overlay"] {
-  position: fixed !important;
-  bottom: 16px !important;
-  right: 16px !important;
-  max-width: 320px !important;
-  width: auto !important;
-  height: auto !important;
-  border: none !important;
-  overflow: visible !important; /* 👈 mantém o botão visível */
-  z-index: 9999 !important;
-  transform: translateZ(0); /* melhora renderização */
-}
-
-/* Remove cálculo errado de largura que cria barra */
 body {
   width: 100% !important;
 }
 
+/* Posiciona o widget no canto direito inferior */
+div[id^="kofi-widget-overlay"] {
+  position: fixed !important;
+  bottom: 18px !important;
+  right: 18px !important;
+  z-index: 9999 !important;
+  transform: translateZ(0);
+}
 
-/* Corrige espaçamento extra que causa a barra de rolagem */
+/* Garante que o iframe interno não estoure a tela */
+div[id^="kofi-widget-overlay"] iframe {
+  max-width: 280px !important;
+  border: none !important;
+  overflow: hidden !important;
+  display: block !important;
+}
+
+/* Remove qualquer possível barra invisível */
 body::after {
   content: "";
   display: block;
@@ -44,6 +45,7 @@ body::after {
   width: 100vw;
   overflow: hidden;
 }
+
 
     :root{
       --primary:#00897B;
@@ -388,19 +390,22 @@ blockquote.verse footer {
 <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js" defer></script>
 <script>
   window.addEventListener("load", () => {
-    try {
-      kofiWidgetOverlay.draw('eversoncunha', {
-        'type': 'floating-chat',
-        'floating-chat.donateButton.text': '☕ Ko-fi',
-        'floating-chat.donateButton.background-color': '#00897B',
-        'floating-chat.donateButton.text-color': '#fff',
-        'position': 'right'
-      });
-    } catch (e) {
-      console.warn("Ko-fi widget não pôde ser carregado:", e);
-    }
+    setTimeout(() => {
+      try {
+        kofiWidgetOverlay.draw('eversoncunha', {
+          'type': 'floating-chat',
+          'floating-chat.donateButton.text': '☕ Ko-fi',
+          'floating-chat.donateButton.background-color': '#00897B',
+          'floating-chat.donateButton.text-color': '#fff',
+          'position': 'right'
+        });
+      } catch (e) {
+        console.warn("Ko-fi widget não pôde ser carregado:", e);
+      }
+    }, 800); // pequeno delay para garantir que o iframe já existe
   });
 </script>
+
 
 
 
