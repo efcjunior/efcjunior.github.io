@@ -11,41 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-/* --- Correção definitiva do Ko-fi --- */
-html, body {
-  overflow-x: hidden !important;
-}
 
-body {
-  width: 100% !important;
-}
-
-/* Posiciona o widget no canto direito inferior */
-div[id^="kofi-widget-overlay"] {
-  position: fixed !important;
-  bottom: 18px !important;
-  right: 18px !important;
-  z-index: 9999 !important;
-  transform: translateZ(0);
-}
-
-/* Garante que o iframe interno não estoure a tela */
-div[id^="kofi-widget-overlay"] iframe {
-  max-width: 280px !important;
-  border: none !important;
-  overflow: hidden !important;
-  display: block !important;
-}
-
-/* Remove qualquer possível barra invisível */
-body::after {
-  content: "";
-  display: block;
-  height: 0;
-  width: 100vw;
-  overflow: hidden;
-}
-
+div[id^="kofi-widget-overlay"]{position:fixed!important;bottom:18px!important;right:18px!important;z-index:2147483647!important}
+  div[id^="kofi-widget-overlay"] iframe{display:block!important;max-width:320px!important;border:0!important;overflow:hidden!important}
 
     :root{
       --primary:#00897B;
@@ -388,24 +356,59 @@ blockquote.verse footer {
   </script>
   
 <!-- Ko-fi Floating Chat -->
-<script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Garante que o objeto esteja disponível antes de chamar draw
-    const checkKofi = setInterval(() => {
-      if (window.kofiWidgetOverlay && typeof kofiWidgetOverlay.draw === "function") {
-        clearInterval(checkKofi);
+(function () {
+  // Draw once
+  function draw() {
+    try {
+      if (window.kofiWidgetOverlay && typeof kofiWidgetOverlay.draw === 'function') {
         kofiWidgetOverlay.draw('eversoncunha', {
           'type': 'floating-chat',
           'floating-chat.donateButton.text': '☕ Apoie',
           'floating-chat.donateButton.background-color': '#00897B',
           'floating-chat.donateButton.text-color': '#fff'
         });
+        return true;
       }
-    }, 300);
-  });
-</script>
+    } catch (e) {
+      console.error('[Ko-fi] draw error:', e);
+    }
+    return false;
+  }
 
+  // If API already present, draw; otherwise load and retry
+  function ensureScriptAndDraw() {
+    if (draw()) return;
+
+    // Avoid double-inject
+    if (document.querySelector('script[data-kofi="overlay"]')) return;
+
+    var s = document.createElement('script');
+    s.src = 'https://storage.ko-fi.com/cdn/scripts/overlay-widget.js';
+    s.async = true;
+    s.defer = true;
+    s.crossOrigin = 'anonymous';
+    s.setAttribute('data-kofi', 'overlay');
+    s.onload = function () {
+      // try a few times in case the global is set slightly later
+      var tries = 0, t = setInterval(function(){
+        if (draw() || ++tries > 20) clearInterval(t); // ~10s max
+      }, 500);
+    };
+    s.onerror = function (e) {
+      console.error('[Ko-fi] failed to load overlay-widget.js', e);
+    };
+    document.head.appendChild(s);
+  }
+
+  // Run after full load (covers static + SPA cases)
+  if (document.readyState === 'complete') {
+    ensureScriptAndDraw();
+  } else {
+    window.addEventListener('load', ensureScriptAndDraw, { once: true });
+  }
+})();
+</script>
 
 
 
