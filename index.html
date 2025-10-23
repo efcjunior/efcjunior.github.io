@@ -11,8 +11,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    html, body {
-  overflow-x: hidden;
+    /* --- Correção Ko-fi --- */
+html, body {
+  overflow-x: hidden !important;
+}
+
+/* Garante que o widget nunca ultrapasse a largura da viewport */
+iframe[src*="ko-fi.com"], 
+div[id^="kofi-widget-overlay"] {
+  position: fixed !important;
+  bottom: 12px !important;
+  right: 12px !important;
+  max-width: 300px !important;
+  width: auto !important;
+  overflow: hidden !important;
+  border: none !important;
+  clip-path: inset(0 0 0 0);
+  z-index: 9999 !important;
+}
+
+/* Corrige espaçamento extra que causa a barra de rolagem */
+body::after {
+  content: "";
+  display: block;
+  height: 0;
+  width: 100vw;
+  overflow: hidden;
 }
 
     :root{
