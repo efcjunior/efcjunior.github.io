@@ -11,24 +11,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* --- Correção Ko-fi --- */
+/* --- Correção Ko-fi sem sumir o botão --- */
 html, body {
   overflow-x: hidden !important;
 }
 
-/* Garante que o widget nunca ultrapasse a largura da viewport */
 iframe[src*="ko-fi.com"], 
 div[id^="kofi-widget-overlay"] {
   position: fixed !important;
-  bottom: 12px !important;
-  right: 12px !important;
-  max-width: 300px !important;
+  bottom: 16px !important;
+  right: 16px !important;
+  max-width: 320px !important;
   width: auto !important;
-  overflow: hidden !important;
+  height: auto !important;
   border: none !important;
-  clip-path: inset(0 0 0 0);
+  overflow: visible !important; /* 👈 mantém o botão visível */
   z-index: 9999 !important;
+  transform: translateZ(0); /* melhora renderização */
 }
+
+/* Remove cálculo errado de largura que cria barra */
+body {
+  width: 100% !important;
+}
+
 
 /* Corrige espaçamento extra que causa a barra de rolagem */
 body::after {
