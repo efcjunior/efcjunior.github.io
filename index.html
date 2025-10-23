@@ -15,6 +15,17 @@
 div[id^="kofi-widget-overlay"]{position:fixed!important;bottom:18px!important;right:18px!important;z-index:2147483647!important}
   div[id^="kofi-widget-overlay"] iframe{display:block!important;max-width:320px!important;border:0!important;overflow:hidden!important}
 
+    /* Corrige visual duplicado do Ko-fi */
+div[id^="kofi-widget-overlay"] iframe {
+  opacity: 1 !important;
+}
+
+div[id^="kofi-widget-overlay"]:not(:has(iframe[src*="widgetOverlay"])) iframe {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+
     :root{
       --primary:#00897B;
       --secondary:#7F71AC;
