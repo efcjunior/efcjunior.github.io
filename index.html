@@ -132,9 +132,9 @@ blockquote.verse footer {
         Engenheiro de software brasileiro apaixonado por unir tecnologia e propósito. Atuo com integração de APIs,
         desenho de arquiteturas e desenvolvimento backend com foco em clareza, testes e confiabilidade.
       </p>
-      <blockquote class="verse">
-  <p>“Portanto, quer vocês comam, bebam ou façam qualquer outra coisa, façam tudo para a glória de Deus.”</p>
-  <footer>— 1Co 10:31 (NVI)</footer>
+      <blockquote class="verse" id="verse">
+  <p></p>
+  <footer></footer>
 </blockquote>
 
       <div class="divider"></div>
@@ -232,7 +232,9 @@ blockquote.verse footer {
         ctaLinkedin:"Conectar no LinkedIn",
         supportTitle:"Apoie & Contato",
         supportText:"Curtiu os projetos? Você pode me incentivar a continuar criando ferramentas abertas e educativas.",
-        footer:"© 2025 Everson Cunha — Desenvolvido com propósito."
+        footer:"© 2025 Everson Cunha — Desenvolvido com propósito.",
+        verseText: "'Portanto, quer vocês comam, bebam ou façam qualquer outra coisa, façam tudo para a glória de Deus.'",
+        verseRef: "— 1Co 10:31 (NVI)"
       },
       en:{
         title:"Everson Cunha — Software Engineer",
@@ -261,7 +263,9 @@ blockquote.verse footer {
         ctaLinkedin:"Connect on LinkedIn",
         supportTitle:"Support & Contact",
         supportText:"Enjoy the projects? You can support me to keep building open and educational tools.",
-        footer:"© 2025 Everson Cunha — Crafted with purpose."
+        footer:"© 2025 Everson Cunha — Crafted with purpose.",
+        verseText: "'So whether you eat or drink or whatever you do, do it all for the glory of God.'",
+        verseRef: "— 1 Cor 10:31 (NIV)"
       }
     };
 
@@ -290,6 +294,13 @@ blockquote.verse footer {
       // update flag pressed states
       flagPT.setAttribute('aria-pressed', lang==='pt');
       flagEN.setAttribute('aria-pressed', lang==='en');
+
+      const verseBlock = document.getElementById('verse');
+      if (verseBlock) {
+        verseBlock.querySelector('p').textContent = L.verseText;
+        verseBlock.querySelector('footer').textContent = L.verseRef;
+      }
+
     }
 
     // read saved language or default to pt
@@ -339,20 +350,21 @@ blockquote.verse footer {
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));      
   </script>
   <!-- Ko-fi Floating Chat -->
-  <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
+ <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
   <script>
     try {
       kofiWidgetOverlay.draw('eversoncunha', {
         'type': 'floating-chat',
         'floating-chat.donateButton.text': '☕ Apoie no Ko-fi',
         'floating-chat.donateButton.background-color': '#00897B',
-        'floating-chat.donateButton.text-color': '#ffffff',
-        'position': 'left'
+        'floating-chat.donateButton.text-color': '#fff',
+        'position': 'right' // ✅ corrigido para direita
       });
     } catch (e) {
       console.warn("Ko-fi widget não pôde ser carregado:", e);
     }
   </script>
+
 </body>
 </html>
 
