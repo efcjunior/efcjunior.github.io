@@ -386,25 +386,26 @@ blockquote.verse footer {
     },{threshold:.12});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));      
   </script>
-  <!-- Ko-fi Floating Chat -->
-<script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js" defer></script>
+  
+<!-- Ko-fi Floating Chat -->
+<script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
 <script>
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      try {
+  document.addEventListener("DOMContentLoaded", function() {
+    // Garante que o objeto esteja disponível antes de chamar draw
+    const checkKofi = setInterval(() => {
+      if (window.kofiWidgetOverlay && typeof kofiWidgetOverlay.draw === "function") {
+        clearInterval(checkKofi);
         kofiWidgetOverlay.draw('eversoncunha', {
           'type': 'floating-chat',
-          'floating-chat.donateButton.text': '☕ Ko-fi',
+          'floating-chat.donateButton.text': '☕ Apoie',
           'floating-chat.donateButton.background-color': '#00897B',
-          'floating-chat.donateButton.text-color': '#fff',
-          'position': 'right'
+          'floating-chat.donateButton.text-color': '#fff'
         });
-      } catch (e) {
-        console.warn("Ko-fi widget não pôde ser carregado:", e);
       }
-    }, 800); // pequeno delay para garantir que o iframe já existe
+    }, 300);
   });
 </script>
+
 
 
 
